@@ -79,4 +79,17 @@ public class CustomerService implements CUSTOMER_SERVICE {
         }
         return allCustomersDTOList;
     }
+
+    @Override
+    public String deleteCustomer(int customerID) {
+        if (customer_repo.existsById(customerID)) {
+            customer_repo.deleteById(customerID);
+            return customerID+" is deleted";
+        } else {
+            throw new RuntimeException("ID is not found");
+        }
+
+    }
+
+
 }

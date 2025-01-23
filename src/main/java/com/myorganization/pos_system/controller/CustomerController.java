@@ -32,8 +32,12 @@ public class CustomerController {
     public List<CustomerDTO> getAllCustomers(){
     List<CustomerDTO> allCustomers =customer_service.getAllCustomers();
     return allCustomers;
-
     }
 
+    @DeleteMapping("delete-customer-by-id/{id}")
+    public String deleteCustomer(@PathVariable(value = "id") int customerID ){
+    String deleteStatus=customer_service.deleteCustomer(customerID);
+    return deleteStatus;
+    }
 }
 
