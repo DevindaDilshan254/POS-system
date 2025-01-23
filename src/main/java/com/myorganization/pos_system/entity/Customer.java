@@ -19,7 +19,7 @@ public class Customer {
     @Column(name = "cus_name",length = 100,nullable = false)
     private String customerName;
 
-    @Column(name = "cus_salary",nullable = false)
+    @Column(name = "cus_salary")
     private double customerSalary;
 
     @Column(name = "cus_address",length = 200)
@@ -29,11 +29,11 @@ public class Customer {
     @Column(name = "cus_contact_num",columnDefinition = "json")
     private List<String> customerContactNumber;  //List implementation -ArrayList ,LinkedList,Vector, List<String> contactNumbers = new ArrayList<>();
 
-    @Column(name = "nic",nullable = false)
+    @Column(name = "nic")
     private String nic;
 
     @Column(name = "active_status",columnDefinition ="TINYINT default 1"/*CREATE TABLE customer_table (active_status TINYINT DEFAULT 1) */)            //TINYINT is datatype that represent small integer
-    private boolean active;
+    private boolean activeStatus;
 
     public Customer() {
     }
@@ -45,7 +45,7 @@ public class Customer {
         this.customerAddress = customerAddress;
         this.customerContactNumber = customerContactNumber;
         this.nic = nic;
-        this.active = active;
+        this.activeStatus = active;
     }
 
     public int getCustomerId() {
@@ -96,12 +96,12 @@ public class Customer {
         this.nic = nic;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isActiveStatus() {
+        return activeStatus;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setActiveStatus(boolean activeStatus) {
+        this.activeStatus = activeStatus;
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Customer {
                 ", customerAddress='" + customerAddress + '\'' +
                 ", customerContactNumber=" + customerContactNumber +
                 ", nic='" + nic + '\'' +
-                ", active=" + active +
+                ", active=" + activeStatus +
                 '}';
     }
 }

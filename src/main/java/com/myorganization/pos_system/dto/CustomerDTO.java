@@ -1,10 +1,8 @@
 package com.myorganization.pos_system.dto;
 
-import org.hibernate.annotations.Type;
-
-import javax.persistence.Column;
 import java.util.List;
 
+// Customer class is a pojo -plain old java object ,this doesn't implement or extend from any interface or class and doesn't use jpa annotation
 public class CustomerDTO {
     private  int customerId; //Encapsulation
     private String customerName;
@@ -12,7 +10,7 @@ public class CustomerDTO {
     private String customerAddress;
     private List<String> customerContactNumber;  //List implementation -ArrayList ,LinkedList,Vector, List<String> contactNumbers = new ArrayList<>();
     private String nic;
-    private boolean active;
+    private boolean activeStatus;
 
     public CustomerDTO() {
     }
@@ -24,7 +22,7 @@ public class CustomerDTO {
         this.customerAddress = customerAddress;
         this.customerContactNumber = customerContactNumber;
         this.nic = nic;
-        this.active = active;
+        this.activeStatus = active;
     }
 
     public int getCustomerId() {
@@ -75,12 +73,12 @@ public class CustomerDTO {
         this.nic = nic;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isActiveStatus() {
+        return activeStatus;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setActiveStatus(boolean activeStatus) {
+        this.activeStatus = activeStatus;
     }
 
     @Override
@@ -92,7 +90,7 @@ public class CustomerDTO {
                 ", customerAddress='" + customerAddress + '\'' +
                 ", customerContactNumber=" + customerContactNumber +
                 ", nic='" + nic + '\'' +
-                ", active=" + active +
+                ", active=" + activeStatus +
                 '}';
     }
 }
