@@ -91,5 +91,24 @@ public class CustomerService implements CUSTOMER_SERVICE {
 
     }
 
+    @Override
+    public List<CustomerDTO> getCustomersByActiveStatus(boolean activeStatus) {
+        List<Customer> allCustomersEntityList=customer_repo.findAllByActiveStatusEquals(activeStatus);
+        List<CustomerDTO> allCustomersDTOList=new ArrayList<>();
+
+        for (Customer customer:allCustomersEntityList) {
+            CustomerDTO customerDTO=new CustomerDTO(customer.getCustomerId(),
+                    customer.getCustomerName(),
+                    customer.getCustomerSalary(),
+                    customer.getCustomerAddress(),
+                    customer.getCustomerContactNumber(),
+                    customer.getNic(),
+                    customer.isActiveStatus());
+            allCustomersDTOList.add(customerDTO);
+        }
+        return allCustomersDTOList;
+
+    }
+
 
 }

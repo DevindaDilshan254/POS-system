@@ -11,6 +11,6 @@ public interface CUSTOMER_SERVICE {
     String updateCustomerByID(CustomerUpdateDTO customerUpdateDTO);
     CustomerDTO getCustomerById(int customerID);
     List<CustomerDTO> getAllCustomers();
-
     String deleteCustomer(int customerID);
+    List<CustomerDTO> getCustomersByActiveStatus(boolean activeStatus);
 }

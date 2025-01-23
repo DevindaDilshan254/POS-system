@@ -5,10 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository//Exception handling + create a bean (also implemented jpa repo create the bean)
 @EnableJpaRepositories
-public interface CUSTOMER_REPO extends JpaRepository<Customer,Integer> {//repo note that id is an Integer
-
+public interface CUSTOMER_REPO extends JpaRepository<Customer,Integer> {
+    List<Customer> findAllByActiveStatusEquals(boolean activeStatus);//Entity based query
 }
 
 

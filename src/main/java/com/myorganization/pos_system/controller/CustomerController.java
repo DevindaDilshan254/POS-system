@@ -2,6 +2,7 @@ package com.myorganization.pos_system.controller;
 
 import com.myorganization.pos_system.dto.CustomerDTO;
 import com.myorganization.pos_system.dto.requestDTO.CustomerUpdateDTO;
+import com.myorganization.pos_system.entity.Customer;
 import com.myorganization.pos_system.service.CUSTOMER_SERVICE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,12 @@ public class CustomerController {
     public String deleteCustomer(@PathVariable(value = "id") int customerID ){
     String deleteStatus=customer_service.deleteCustomer(customerID);
     return deleteStatus;
+    }
+
+    @GetMapping("get-customers-by-active-status/{active-status}")
+    public List<CustomerDTO> getCustomersByActiveStatus(@PathVariable(value = "active-status") boolean ActiveStatus){
+     List<CustomerDTO> customerDTOList=customer_service.getCustomersByActiveStatus(ActiveStatus);
+     return customerDTOList;
     }
 }
 
