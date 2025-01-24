@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("api/v1/customer")//map the controller(Handler mapping)
 public class CustomerController {
     @Autowired //dependency injection pattern inherit from singleton design pattern (To use get the created object exist inside the bean/this is a property injection)
-    CUSTOMER_SERVICE customer_service;//spring scan the @Service,@Component
+    private CUSTOMER_SERVICE customer_service;//spring scan the @Service,@Component
 
 @PostMapping("/save-customer")//map the method (handler mapping)
     public String saveCustomer(@RequestBody CustomerDTO customer_dto ){//@RequestBody-map json to DTO

@@ -13,7 +13,7 @@ import java.util.List;
 @Service // define the business logic and create bean(@Component) in container/spring context
 public class CustomerService implements CUSTOMER_SERVICE {
     @Autowired
-    CUSTOMER_REPO customer_repo;
+    private CUSTOMER_REPO customer_repo;
 
     @Override
     public String saveCustomer(CustomerDTO customerDTO) {
