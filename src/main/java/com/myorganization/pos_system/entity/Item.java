@@ -1,11 +1,17 @@
 package com.myorganization.pos_system.entity;
 
 import com.myorganization.pos_system.entity.enums.MeasuringUnitType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "item")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Item {
     @Id
     @Column(name = "item_id",length = 45)
