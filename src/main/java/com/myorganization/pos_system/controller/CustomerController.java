@@ -46,5 +46,7 @@ public class CustomerController {
      List<CustomerDTO> customerDTOList=customer_service.getCustomersByActiveStatus(ActiveStatus);
      return customerDTOList;
     }
+
+
 }
 
