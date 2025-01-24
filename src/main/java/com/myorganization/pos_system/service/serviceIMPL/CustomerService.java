@@ -5,6 +5,7 @@ import com.myorganization.pos_system.dto.requestDTO.CustomerUpdateDTO;
 import com.myorganization.pos_system.entity.Customer;
 import com.myorganization.pos_system.repository.CUSTOMER_REPO;
 import com.myorganization.pos_system.service.CUSTOMER_SERVICE;
+import com.myorganization.pos_system.util.mappers.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -15,15 +16,12 @@ public class CustomerService implements CUSTOMER_SERVICE {
     @Autowired
     private CUSTOMER_REPO customer_repo;
 
+    @Autowired
+    private CustomerMapper customerMapper;
+
     @Override
     public String saveCustomer(CustomerDTO customerDTO) {
-        Customer customer = new Customer(customerDTO.getCustomerId(),
-                customerDTO.getCustomerName(),
-                customerDTO.getCustomerSalary(),
-                customerDTO.getCustomerAddress(),
-                customerDTO.getCustomerContactNumber(),
-                customerDTO.getNic(),
-                customerDTO.isActiveStatus());//this is created in heap,If you need created this as bean in context... use @Component annotation and return an Entity Class
+        Customer customer = customerMapper.CustomerDtoToCustomerEntity(customerDTO);//this is created in heap,If you need created this as bean in context... use @Component annotation and return an Entity Class
         customer_repo.save(customer);
         return "saved";
     }
@@ -32,7 +30,6 @@ public class CustomerService implements CUSTOMER_SERVICE {
     public String updateCustomerByID(CustomerUpdateDTO customerUpdateDTO) {
         if (customer_repo.existsById(customerUpdateDTO.getCustomerId())) {
             Customer customer = customer_repo.getReferenceById(customerUpdateDTO.getCustomerId());
-
             customer.setCustomerName(customerUpdateDTO.getCustomerName());
             customer.setCustomerSalary(customerUpdateDTO.getCustomerSalary());
             customer.setCustomerAddress(customerUpdateDTO.getCustomerAddress());
@@ -49,13 +46,7 @@ public class CustomerService implements CUSTOMER_SERVICE {
     public CustomerDTO getCustomerById(int customerID) {
         if(customer_repo.existsById(customerID)){
             Customer customer=customer_repo.getReferenceById(customerID);
-            CustomerDTO customerDTO=new CustomerDTO(customer.getCustomerId(),
-                    customer.getCustomerName(),
-                    customer.getCustomerSalary(),
-                    customer.getCustomerAddress(),
-                    customer.getCustomerContactNumber(),
-                    customer.getNic(),
-                    customer.isActiveStatus());
+            CustomerDTO customerDTO=customerMapper.CustomerEntityToCustomerDto(customer);
             return customerDTO;
         }else{
         throw new RuntimeException("customer not found");
@@ -66,17 +57,7 @@ public class CustomerService implements CUSTOMER_SERVICE {
     public List<CustomerDTO> getAllCustomers() {
         List<Customer> allCustomersEntityList=customer_repo.findAll();
         List<CustomerDTO> allCustomersDTOList=new ArrayList<>();
-
-        for (Customer customer:allCustomersEntityList) {
-            CustomerDTO customerDTO=new CustomerDTO(customer.getCustomerId(),
-                    customer.getCustomerName(),
-                    customer.getCustomerSalary(),
-                    customer.getCustomerAddress(),
-                    customer.getCustomerContactNumber(),
-                    customer.getNic(),
-                    customer.isActiveStatus());
-            allCustomersDTOList.add(customerDTO);
-        }
+        allCustomersDTOList=customerMapper.CustomerEntityListToCustomerDtoList(allCustomersEntityList);
         return allCustomersDTOList;
     }
 
@@ -94,17 +75,7 @@ public class CustomerService implements CUSTOMER_SERVICE {
     @Override
     public List<CustomerDTO> getCustomersByActiveStatus(boolean activeStatus) {
         List<Customer> allCustomersEntityList=customer_repo.findAllByActiveStatusEquals(activeStatus);
-        List<CustomerDTO> allCustomersDTOList=new ArrayList<>();
-        for (Customer customer:allCustomersEntityList) {
-            CustomerDTO customerDTO=new CustomerDTO(customer.getCustomerId(),
-                    customer.getCustomerName(),
-                    customer.getCustomerSalary(),
-                    customer.getCustomerAddress(),
-                    customer.getCustomerContactNumber(),
-                    customer.getNic(),
-                    customer.isActiveStatus());
-            allCustomersDTOList.add(customerDTO);
-        }
+        List<CustomerDTO> allCustomersDTOList=customerMapper.CustomerEntityListToCustomerDtoList(allCustomersEntityList);
         return allCustomersDTOList;
 
     }

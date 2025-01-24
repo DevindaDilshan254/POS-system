@@ -16,10 +16,8 @@ import java.util.List;
 public class ItemService implements ITEM_SERVICE {
     @Autowired
     private ITEM_REPO item_repo;
-
     @Autowired
     private ModelMapper modelMapper;
-
 
     @Override
     public String saveItem(ItemRequestDTO itemRequestDTO) {

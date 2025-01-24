@@ -28,6 +28,8 @@
 	</scm>
 	<properties>
 		<java.version>11</java.version>
+<!--		<org.mapstruct.version>1.8</org.mapstruct.version>-->
+<!--		<org.mapstruct.target>1.8</org.mapstruct.target>-->
 	</properties>
 	<dependencies>
 		<dependency> <!--RESTFUL service(client server architecture -give a response for the request comes from frontend)+Tomcat server,provide servlet service @RestController,@RequestMapping,no configuration needed spring.application.name=point-of-sell,server.port=8080-->
@@ -81,6 +83,16 @@
 			<version>2.4.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.4.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.4.2.Final</version>
+		</dependency>
 
 	</dependencies>
 
