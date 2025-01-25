@@ -3,6 +3,7 @@ package com.myorganization.pos_system.service.serviceIMPL;
 import com.myorganization.pos_system.dto.CustomerDTO;
 import com.myorganization.pos_system.dto.requestDTO.CustomerUpdateDTO;
 import com.myorganization.pos_system.entity.Customer;
+import com.myorganization.pos_system.exception.NotFoundException;
 import com.myorganization.pos_system.repository.CUSTOMER_REPO;
 import com.myorganization.pos_system.service.CUSTOMER_SERVICE;
 import com.myorganization.pos_system.util.mappers.CustomerMapper;
@@ -49,7 +50,7 @@ public class CustomerService implements CUSTOMER_SERVICE {
             CustomerDTO customerDTO=customerMapper.CustomerEntityToCustomerDto(customer);
             return customerDTO;
         }else{
-        throw new RuntimeException("customer not found");
+        throw new NotFoundException("customer not found");//return a ResponseEntity through the customize Exception
         }
     }
 

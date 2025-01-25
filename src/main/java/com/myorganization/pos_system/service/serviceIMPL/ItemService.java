@@ -2,6 +2,7 @@ package com.myorganization.pos_system.service.serviceIMPL;
 import com.myorganization.pos_system.dto.requestDTO.ItemRequestDTO;
 import com.myorganization.pos_system.dto.responseDTO.ItemResponseDTO;
 import com.myorganization.pos_system.entity.Item;
+import com.myorganization.pos_system.exception.ErrorException;
 import com.myorganization.pos_system.repository.ITEM_REPO;
 import com.myorganization.pos_system.service.ITEM_SERVICE;
 import org.modelmapper.ModelMapper;
@@ -37,7 +38,7 @@ public class ItemService implements ITEM_SERVICE {
             List<ItemResponseDTO> itemResponseDTOS=modelMapper.map(items,new TypeToken<List<ItemResponseDTO>>(){}.getType());
             return itemResponseDTOS;
         }else{
-            throw new RuntimeException("not active items found");
+            throw new ErrorException("not active items found");
         }
     }
 }
