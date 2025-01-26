@@ -17,7 +17,13 @@ public class AppWideExceptionHandler {
     }
     @ExceptionHandler(ErrorException.class) //Run when throw ErrorException class
     ResponseEntity<StandardResponse> handleErrorException(ErrorException e){
-        return new ResponseEntity<StandardResponse>(new StandardResponse(401,"Error",e.getMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<StandardResponse>(new StandardResponse(401,"Error",e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(Exception.class)
+    ResponseEntity<StandardResponse> handleAnyException(Exception e){
+        return new ResponseEntity<StandardResponse>(new StandardResponse(402,"Error",e.getMessage()), HttpStatus.NO_CONTENT);
     }
 
+//    throw new ErrorException("not active items found"); in service
+// => handleErrorException(ErrorException e)
 }
